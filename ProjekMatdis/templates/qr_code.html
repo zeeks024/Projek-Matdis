@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .Desktop6 {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: url('{{ url_for('static', filename='images/a.png') }}') no-repeat center center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="Desktop6">
+        <div class="Rectangle82" style="width: 550px; height: 400px; left: calc(50% - 275px); top: 156px; position: absolute; background: #8655A1"></div>
+        <div class="Group230" style="width: 454px; height: 330px; left: calc(50% - 227px); top: 206px; position: absolute">
+            <div class="WelcomeToLorem" style="left: 128px; top: 0px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Welcome to lorem..!</div>
+            <div class="LoremIpsumIsSimplyDummyTextOfThePrintingAndTypesettingIndustry" style="width: 454px; height: 49px; left: 0px; top: 61px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+        </div>
+        <div class="Rectangle83" style="width: 550px; height: 641px; left: calc(50% - 275px); top: 156px; position: absolute; background: #4B0A53"></div>
+        <div class="Group231" style="width: 454px; height: 559px; left: calc(50% - 227px); top: 194px; position: absolute">
+            <div class="WelcomeToLorem" style="left: 108px; top: 0px; position: absolute; color: white; font-size: 24px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Welcome to lorem..!</div>
+            <div class="PleaseScanTheQrCodeBelowUsingGoogleAuthenticator" style="width: 454px; height: 49px; left: 0px; top: 61px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Please scan the QR code below using Google Authenticator.</div>
+            <form action="{{ url_for('auth.verify_qr') }}" method="POST">
+                <div class="Group229" style="width: 232px; height: 49px; left: 100px; top: 510px; position: absolute">
+                    <div class="Rectangle81" style="width: 232px; height: 49px; left: 0px; top: 0px; position: absolute; background: linear-gradient(90deg, #AF10EE 20%, #FF00BF 100%); border-radius: 36px"></div>
+                    <button type="submit" class="Verify" style="left: 94px; top: 13px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word; background: transparent; border: none;">Verify</button>
+                </div>
+            </form>
+        </div>
+        <div class="Rectangle84" style="width: 218px; height: 208px; left: calc(50% - 109px); top: 390px; position: absolute; background: #D9D9D9">
+            {% if qr_path %}
+                <img src="{{ url_for('static', filename=qr_path) }}" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+            {% else %}
+                <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; color: red;">
+                    QR Code tidak tersedia
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

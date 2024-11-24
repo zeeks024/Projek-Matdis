@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Message</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        .Desktop9 {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background: url('{{ url_for('static', filename='images/a.png') }}') no-repeat center center;
+            background-size: cover;
+        }
+        .Rectangle83 {
+            width: 550px;
+            height: 400px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(75, 10, 83, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container {
+            width: 100%;
+            max-width: 454px;
+            margin: 0 auto;
+        }
+        .instructions {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .message-label {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .message-input {
+            width: 100%;
+            height: 54px;
+            background: white;
+            border-radius: 40px;
+            border: 1px solid #9E896A;
+            padding: 0 20px;
+            font-size: 16px;
+            margin-bottom: 30px;
+            box-sizing: border-box;
+        }
+        .verify-button {
+            width: 232px;
+            height: 49px;
+            background: linear-gradient(90deg, #AF10EE 20%, #FF00BF 100%);
+            border-radius: 36px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            font-family: 'Poppins', sans-serif;
+        }
+        .alert {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+        }
+        .alert-error {
+            background-color: #ff4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="Desktop9">
+        <div class="Rectangle83">
+            <div class="form-container">
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="{{ url_for('auth.signmessage') }}">
+                    <div class="instructions">
+                        Please enter the message you want to sign.
+                    </div>
+                    
+                    <label class="message-label">
+                        Enter Message
+                    </label>
+                    
+                    <input type="text" 
+                           name="message" 
+                           class="message-input" 
+                           required 
+                           autocomplete="off">
+                    
+                    <button type="submit" class="verify-button">
+                        Sign
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
