@@ -1,9 +1,0 @@
-flask
-flask-sqlalchemy
-flask-login
-python-dotenv
-pyotp
-qrcode
-Pillow
-cryptography
-email-validator
