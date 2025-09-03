@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+        .Desktop2 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: url('{{ url_for('static', filename='images/a.png') }}') no-repeat center center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="Desktop2">
+        <div class="Rectangle82" style="width: 550px; height: 700px; left: 50%; top: 50%; transform: translate(-50%, -50%); position: absolute; opacity: 0.80; background: #4B0A53"></div>
+        <div class="Group233" style="width: 462px; height: 611px; left: 50%; top: 50%; transform: translate(-50%, -50%); position: absolute">
+            <div class="Group223" style="width: 329px; height: 107px; left: 50%; top: 0px; transform: translateX(-50%); position: absolute">
+                <div class="Group222" style="width: 329px; height: 59px; left: 0px; top: 48px; position: absolute">
+                    <div class="Rectangle78" style="width: 329px; height: 59px; left: 0px; top: 0px; position: absolute; background: #F8EDDD; border-radius: 33px"></div>
+                    <a href="{{ url_for('auth.login') }}" class="Login" style="left: 72px; top: 18px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word; text-decoration: none;">Login</a>
+                    <div class="Rectangle79" style="width: 146px; height: 40px; left: 171px; top: 10px; position: absolute; background: linear-gradient(90deg, #AF10EE 20%, #FF00BF 100%); border-radius: 33px"></div>
+                    <div class="Register" style="left: 211px; top: 18px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Register</div>
+                </div>
+                <div class="WelcomeToLorem" style="left: 46px; top: 0px; position: absolute; color: white; font-size: 24px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Welcome to lorem..!</div>
+            </div>
+            <form action="{{ url_for('auth.signup') }}" method="POST">
+                <div class="Group232" style="width: 435px; height: 90px; left: 0px; top: 164px; position: absolute">
+                    <div class="Rectangle80" style="width: 435px; height: 54px; left: 0px; top: 36px; position: absolute; background: white; border-radius: 40px; border: 1px #9E896A solid"></div>
+                    <div class="EmailAddress" style="left: 0px; top: 0px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Email Address</div>
+                    <input type="email" name="email" placeholder="Enter your Email Address" style="left: 31px; top: 51px; position: absolute; color: #1E1E1E; font-size: 15px; font-family: Poppins; font-weight: 300; word-wrap: break-word; border: none; background: transparent;">
+                </div>
+                <div class="Group225" style="width: 435px; height: 90px; left: 0px; top: 286px; position: absolute">
+                    <div class="Rectangle80" style="width: 435px; height: 54px; left: 0px; top: 36px; position: absolute; background: white; border-radius: 40px; border: 1px #9E896A solid"></div>
+                    <div class="UserName" style="left: 0px; top: 0px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">User name</div>
+                    <input type="text" name="username" placeholder="Enter your User name" style="left: 31px; top: 51px; position: absolute; color: #1E1E1E; font-size: 15px; font-family: Poppins; font-weight: 300; word-wrap: break-word; border: none; background: transparent;">
+                </div>
+                <div class="Group226" style="width: 435px; height: 90px; left: 0px; top: 408px; position: absolute">
+                    <div class="Rectangle80" style="width: 435px; height: 54px; left: 0px; top: 36px; position: absolute; background: white; border-radius: 40px; border: 1px #9E896A solid"></div>
+                    <div class="Password" style="left: 0px; top: 0px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Password</div>
+                    <input type="password" name="password" placeholder="Enter your Password" style="left: 31px; top: 51px; position: absolute; color: #1E1E1E; font-size: 15px; font-family: Poppins; font-weight: 300; word-wrap: break-word; border: none; background: transparent;">
+                </div>
+                <div class="Group229" style="width: 232px; height: 49px; left: 50%; top: 562px; transform: translateX(-50%); position: absolute">
+                    <div class="Rectangle81" style="width: 232px; height: 49px; left: 0px; top: 0px; position: absolute; background: linear-gradient(90deg, #AF10EE 20%, #FF00BF 100%); border-radius: 36px"></div>
+                    <button type="submit" class="Register" style="left: 94px; top: 13px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word; background: transparent; border: none;">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
