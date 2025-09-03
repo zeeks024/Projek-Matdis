@@ -4,7 +4,7 @@ flask-login==0.6.3
 python-dotenv==1.0.0
 pyotp==2.9.0
 qrcode==7.4.2
-Pillow==10.0.1
+Pillow==10.3.0
 cryptography==41.0.7
 email-validator==2.1.0
 secrets
