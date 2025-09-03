@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MatDis Security App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .welcome-section {
+            color: white;
+        }
+        
+        .welcome-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .welcome-subtitle {
+            opacity: 0.8;
+            font-size: 16px;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .security-status {
+            background: rgba(76, 175, 80, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .logout-btn {
+            background: rgba(244, 67, 54, 0.2);
+            color: white;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(244, 67, 54, 0.3);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-title {
+            color: white;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .feature-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stats-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .stats-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .stat-value {
+            color: white;
+            font-size: 32px;
+            font-weight: 600;
+            display: block;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <div class="welcome-section">
+                <div class="welcome-title">Welcome, {{ username }}!</div>
+                <div class="welcome-subtitle">MatDis Security Application Dashboard</div>
+            </div>
+            <div class="user-actions">
+                <span class="security-status">🔒 Secure Session</span>
+                <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <div class="stats-title">Security Overview</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value">✅</span>
+                    <div class="stat-label">Multi-Factor Auth</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">🔐</span>
+                    <div class="stat-label">AES-256 Encryption</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">🔑</span>
+                    <div class="stat-label">RSA Digital Signature</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">🛡️</span>
+                    <div class="stat-label">CSRF Protection</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">✍️</span>
+                <div class="feature-title">Digital Signature</div>
+                <div class="feature-description">
+                    Sign messages using RSA digital signatures for authentication and non-repudiation. 
+                    Verify the integrity and authenticity of your communications.
+                </div>
+                <a href="{{ url_for('auth.signmessage') }}" class="feature-btn">Sign Message</a>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <div class="feature-title">File Encryption</div>
+                <div class="feature-description">
+                    Encrypt and decrypt files using our custom AES-256 implementation. 
+                    Secure your sensitive documents with military-grade encryption.
+                </div>
+                <a href="{{ url_for('auth.menuencrypt') }}" class="feature-btn">Encrypt Files</a>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <div class="feature-title">TOTP Setup</div>
+                <div class="feature-description">
+                    Configure Time-based One-Time Password (TOTP) for enhanced security. 
+                    Use with Google Authenticator or similar apps.
+                </div>
+                <a href="{{ url_for('auth.qr_code') }}" class="feature-btn">Setup TOTP</a>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <div class="feature-title">Security Status</div>
+                <div class="feature-description">
+                    Monitor your account security status, view login history, 
+                    and manage your security settings.
+                </div>
+                <a href="/auth/api/security-status" class="feature-btn" target="_blank">View Status</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 MatDis Security Application. Built with advanced cryptographic techniques for educational purposes.</p>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate stats on load
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach((stat, index) => {
+                setTimeout(() => {
+                    stat.style.opacity = '0';
+                    stat.style.transform = 'scale(0.5)';
+                    setTimeout(() => {
+                        stat.style.transition = 'all 0.5s ease';
+                        stat.style.opacity = '1';
+                        stat.style.transform = 'scale(1)';
+                    }, 100);
+                }, index * 200);
+            });
+            
+            // Add click effects to feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const btn = this.querySelector('.feature-btn');
+                    if (btn) {
+                        btn.click();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
